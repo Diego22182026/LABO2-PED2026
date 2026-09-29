@@ -25,7 +25,5 @@ void printList (Inventario* head){
 int main (){
 
 
-
-
     return 0;
 }
