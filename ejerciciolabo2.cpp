@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-struct prueba{
+struct Inventario{
 
     int codigo;
     std:: string nombre;
