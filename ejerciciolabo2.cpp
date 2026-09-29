@@ -39,9 +39,11 @@ int main (){
                     switch(option){
 
                         {case 1:
-                            int n;
-                            std:: cout << "Ingrese el codigo, nombre y precio del producto: " << std:: endl;
-                            std:: cin >> n;
+                            int codigo;
+                            std:: string nombre;
+                            double precio;
+                            std:: cout << "Ingrese el codigo, nombre y precio (respectivamente)del producto: " << std:: endl;
+                            std:: cin >> codigo >> nombre >> precio;
 
                             //(Llamar a la funcion)
 
