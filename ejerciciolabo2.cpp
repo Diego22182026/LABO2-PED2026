@@ -14,21 +14,38 @@ struct Inventario
 void Insert(Inventario *&head)
 {
     Inventario nuevo;
+
     std::cout << "\n--- Agregar nuevo objeto ---\n";
     std::cout << "Codigo: " << std::endl;
     std::cin >> nuevo.codigo;
     std::cout << std::endl;
+
     std::cout << "Nombre: " << std::endl;
     std::cin >> nuevo.nombre;
     std::cout << std::endl;
+
     std::cout << "Precio: " << std::endl;
     std::cin >> nuevo.precio;
     std::cout << std::endl;
 
     Inventario *new_node = new Inventario;
+
+    // Copiar los datos de nuevo al nuevo nodo
+    new_node->codigo = nuevo.codigo;
+    new_node->nombre = nuevo.nombre;
+    new_node->precio = nuevo.precio;
+
+    // Conectar el nuevo nodo
     new_node->siguiente = head;
     new_node->anterior = nullptr;
-    head->anterior = new_node;
+
+    // Si la lista no esta vacia
+    if (head != nullptr)
+    {
+        head->anterior = new_node;
+    }
+
+    // El nuevo nodo pasa a ser el primero
     head = new_node;
 }
 
@@ -65,7 +82,7 @@ void eliminarIntermedio(Inventario *&head, int id)
     }
 
     // Si el producto no es encontrado
-    if (current->siguiente == nullptr && current->codigo != id)
+    if (current->siguiente == nullptr)
     {
         std::cout << "El producto no se encontro en la lista\n";
         return;
@@ -75,12 +92,14 @@ void eliminarIntermedio(Inventario *&head, int id)
     if (current->siguiente != nullptr)
     {
         Inventario *temp = current->siguiente;
+
         current->siguiente = current->siguiente->siguiente;
 
         if (current->siguiente != nullptr)
         {
             current->siguiente->anterior = current;
         }
+
         delete temp;
     }
 };
@@ -91,10 +110,13 @@ void printList(Inventario *head)
 
     while (current != nullptr)
     {
-        std::cout << current->codigo && std::cout << current->nombre && std::cout << current->precio << "->";
+        std::cout << current->codigo << " "
+                  << current->nombre << " "
+                  << current->precio << " -> ";
+
         current = current->siguiente;
     }
-    std::cout << std::endl;
+
 }
 
 int main()
@@ -120,16 +142,17 @@ int main()
             case 1:
 
                 Insert(Lista1);
-                    break;
+                break;
             }
 
             {
             case 2:
                 int n;
+
                 std::cout << "Ingrese el codigo del valor a eliminar: " << std::endl;
                 std::cin >> n;
 
-                eliminarIntermedio(Lista1,n);
+                eliminarIntermedio(Lista1, n);
 
                 break;
             }
@@ -152,7 +175,6 @@ int main()
             }
         }
     }
-
     while (option >= 1 && option <= 4);
 
     return 0;
