@@ -4,7 +4,7 @@
 struct Inventario{
 
     int codigo;
-    std:: string nombre;
+    std::string nombre;
     double precio;
     Inventario *next;
 
